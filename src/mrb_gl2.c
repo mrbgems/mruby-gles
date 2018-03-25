@@ -2184,20 +2184,22 @@ mrb_gl_vertex_attrib_pointer(mrb_state* mrb, mrb_value mod)
 {
   mrb_int indx, size, type, stride;
   mrb_value normalized, ptr;
-  GLvoid const *p;
+  GLvoid const *p = NULL;
 
   mrb_get_args(mrb, "iiioio", &indx, &size, &type, &normalized,
                &stride, &ptr);
-  switch (mrb_type(ptr)) {
-  case MRB_TT_STRING:
-    p = RSTRING_PTR(ptr);
-    break;
-  case MRB_TT_CPTR:
-    p = mrb_cptr(ptr);
-    break;
-  default:
-    mrb_raise(mrb, E_TYPE_ERROR, "expected String/Cptr");
-    break;
+  if (mrb_nil_p(ptr)) {
+    switch (mrb_type(ptr)) {
+    case MRB_TT_STRING:
+      p = RSTRING_PTR(ptr);
+      break;
+    case MRB_TT_CPTR:
+      p = mrb_cptr(ptr);
+      break;
+    default:
+      mrb_raise(mrb, E_TYPE_ERROR, "expected String/Cptr");
+      break;
+    }
   }
   glVertexAttribPointer((GLuint) indx, (GLint) size, (GLenum) type,
                         MRB_VALUE_TO_GL_BOOLEAN(normalized),
