@@ -87,7 +87,7 @@ GLchar** mrb_array_to_char_p_buffer(mrb_state* mrb, mrb_value arr)
   GLchar** p = allocate_char_p_buffer(mrb, RARRAY_LEN(arr));
 
   for (i = 0; i < RARRAY_LEN(arr); i++) {
-    p[i] = mrb_string_value_cstr(mrb, &RARRAY_PTR(arr)[i]);
+    p[i] = mrb_str_to_cstr(mrb, RARRAY_PTR(arr)[i]);
   }
 
   return p;
