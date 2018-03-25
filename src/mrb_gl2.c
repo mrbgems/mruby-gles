@@ -423,7 +423,7 @@ mrb_gl_buffer_data(mrb_state* mrb, mrb_value mod)
    * String#unpack method for mruby to help with this conversion
    */
   char* data;
-  int data_len;
+  mrb_int data_len;
 
   mrb_get_args(mrb, "iisi", &target, &size, &data, &data_len, &usage);
   glBufferData((GLenum) target, (GLsizeiptr) size,
@@ -437,7 +437,7 @@ mrb_gl_buffer_sub_data(mrb_state* mrb, mrb_value mod)
 {
   mrb_int target, offset, size;
   char* data;
-  int data_len;
+  mrb_int data_len;
 
   mrb_get_args(mrb, "iiis", &target, &offset, &size, &data, &data_len);
   glBufferSubData((GLenum) target, (GLintptr) offset,
@@ -528,7 +528,7 @@ mrb_gl_compressed_tex_image_2d(mrb_state* mrb, mrb_value mod)
 {
   mrb_int target, level, internalformat, width, height, border, imageSize;
   char* data;
-  int data_len;
+  mrb_int data_len;
 
   mrb_get_args(mrb, "iiiiiiis", &target, &level, &internalformat, &width,
                &height, &border, &imageSize, &data, &data_len);
@@ -546,7 +546,7 @@ mrb_gl_compressed_tex_sub_image_2d(mrb_state* mrb, mrb_value mod)
   mrb_int target, level, xoffset, yoffset;
   mrb_int width, height, format, imageSize;
   char* data;
-  int data_len;
+  mrb_int data_len;
 
   mrb_get_args(mrb, "iiiiiiiis", &target, &level, &xoffset, &yoffset,
                &width, &height, &format, &imageSize, &data, &data_len);
@@ -785,7 +785,7 @@ mrb_gl_draw_elements(mrb_state* mrb, mrb_value mod)
 {
   mrb_int mode, count, type;
   char* indices;
-  int indices_len;
+  mrb_int indices_len;
 
   mrb_get_args(mrb, "iiis", &mode, &count, &type, &indices, &indices_len);
   glDrawElements((GLenum) mode, (GLsizei) count, (GLenum) type,
@@ -1577,7 +1577,7 @@ mrb_gl_shader_binary(mrb_state* mrb, mrb_value mod)
   mrb_value shaders;
   GLuint* shaders_ptr;
   char* binary;
-  int binary_len;
+  mrb_int binary_len;
 
   mrb_get_args(mrb, "iAisi", &n, &shaders, &binaryformat,
                &binary, &binary_len, &length);
@@ -1684,7 +1684,7 @@ mrb_gl_tex_image_2d(mrb_state* mrb, mrb_value mod)
 {
   mrb_int target, level, internalformat, width, height, border, format, type;
   char* pixels;
-  int pixels_length;
+  mrb_int pixels_length;
 
   mrb_get_args(mrb, "iiiiiiiis", &target, &level, &internalformat, &width,
                &height, &border, &format, &type, &pixels, &pixels_length);
@@ -1755,7 +1755,7 @@ mrb_gl_tex_sub_image_2d(mrb_state* mrb, mrb_value mod)
 {
   mrb_int target, level, xoffset, yoffset, width, height, format, type;
   char* pixels;
-  int pixels_len;
+  mrb_int pixels_len;
 
   mrb_get_args(mrb, "iiiiiiiis", &target, &level, &xoffset, &yoffset,
                &width, &height, &format, &type, &pixels, &pixels_len);
