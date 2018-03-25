@@ -2184,10 +2184,10 @@ mrb_gl_vertex_attrib_pointer(mrb_state* mrb, mrb_value mod)
 {
   mrb_int indx, size, type, stride;
   mrb_value normalized, ptr;
+  GLvoid const *p;
 
   mrb_get_args(mrb, "iiioio", &indx, &size, &type, &normalized,
                &stride, &ptr);
-  GLvoid const *p;
   switch (mrb_type(ptr)) {
   case MRB_TT_STRING:
     p = RSTRING_PTR(ptr);
